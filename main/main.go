@@ -1,6 +1,7 @@
 package main
 
 import (
+	"androd/handlers"
 	"fmt"
 	"net/http"
 )
@@ -8,11 +9,7 @@ import (
 func main() {
 	fmt.Println("Starting server at port 3333...")
 
-	http.HandleFunc("/", landingPageHandler)
+	http.HandleFunc("/", handlers.NewHomeHandler().ServeHTTP)
 
 	http.ListenAndServe(":3333", nil)
-}
-
-func landingPageHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello, World!")
 }
