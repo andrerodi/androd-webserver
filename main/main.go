@@ -19,7 +19,7 @@ func main() {
 	}
 
 	// Build the path to the static directory
-	staticDir := filepath.Join(dir, "..", "static")
+	staticDir := filepath.Join(dir, "static")
 	log.Println("Serving static files from: ", staticDir)
 	// Serve static images from the filesystem
 	fileServer := http.FileServer(http.Dir(staticDir))
