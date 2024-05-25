@@ -1,4 +1,4 @@
 :root {
   /* Override navar height for footer, so that it is not as big */
-  --bulma-navbar-height: 1.25rem;
+  --bulma-navbar-height: 1rem;
 }
