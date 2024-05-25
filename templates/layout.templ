@@ -6,6 +6,7 @@ templ header(title string) {
 		<meta charset="UTF-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/devicons/1.8.0/css/devicons.min.css" />
     <script src="https://unpkg.com/htmx.org@1.9.12"></script>
 	</head>
 }
@@ -29,7 +30,18 @@ templ hero(contents templ.Component, title string) {
     <div class="hero-foot">
       <nav class="tabs">
         <div class="container">
-          <p>Made with love</p>
+          <div class="columns">
+            <div class="column">
+              <a class="devicons devicons-github_small" href="https://github.com/andrerodi/androd-webserver" />
+            </div>
+            <div class="column">
+              <span class="devicons devicons-github_small" htref="https://github.com/andrerodi/androd-webserver" />
+            </div>
+            <div class="column">
+              <p>Made with love</p>
+            </div>
+          </div>
+          // <img src="/static/img/dancing-gopher.gif" alt="Gopher-Golang" width="46" height="46"/>
         </div>
       </nav>
     </div>
@@ -41,8 +53,8 @@ templ nav(title string) {
   <nav class="navbar">
     <div class="container">
       <div class="navbar-brand">
-        <a class="navbar-item">
-          <p class="title">~/androd/{ title }</p>
+        <a class="navbar-item" href="/">
+          <span class="title" style="pointer: cursor;">~/androd/{ title }</span>
         </a>
         <span class="navbar-burger" data-target="navbarMenuHeroA">
           <span></span>

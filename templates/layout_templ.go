@@ -36,7 +36,7 @@ func header(title string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</title><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css\"><script src=\"https://unpkg.com/htmx.org@1.9.12\"></script></head>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</title><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css\"><link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/devicons/1.8.0/css/devicons.min.css\"><script src=\"https://unpkg.com/htmx.org@1.9.12\"></script></head>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -76,7 +76,7 @@ func hero(contents templ.Component, title string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div></div><!-- Hero footer: will stick at the bottom --><div class=\"hero-foot\"><nav class=\"tabs\"><div class=\"container\"><p>Made with love</p></div></nav></div></section>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div></div><!-- Hero footer: will stick at the bottom --><div class=\"hero-foot\"><nav class=\"tabs\"><div class=\"container\"><div class=\"columns\"><div class=\"column\"><a class=\"devicons devicons-github_small\" href=\"https://github.com/andrerodi/androd-webserver\"></a></div><div class=\"column\"><span class=\"devicons devicons-github_small\" htref=\"https://github.com/andrerodi/androd-webserver\"></span></div><div class=\"column\"><p>Made with love</p></div></div></div></nav></div></section>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -100,14 +100,14 @@ func nav(title string) templ.Component {
 			templ_7745c5c3_Var4 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<nav class=\"navbar\"><div class=\"container\"><div class=\"navbar-brand\"><a class=\"navbar-item\"><p class=\"title\">~/androd/")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<nav class=\"navbar\"><div class=\"container\"><div class=\"navbar-brand\"><a class=\"navbar-item\" href=\"/\"><p class=\"title\" style=\"pointer: cursor;\">~/androd/")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var5 string
 		templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(title)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 45, Col: 43}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 57, Col: 68}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 		if templ_7745c5c3_Err != nil {
