@@ -1,4 +1,4 @@
-# Bachelor Thesis
+# Bachelor Thesis 2
 
 ## Header
 

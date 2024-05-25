@@ -83,7 +83,7 @@ func getProjectById(id int) templates.Project {
 	return templates.Project{
 		Id:      id,
 		Title:   file.Name(),
-		Content: string(contents),
+		Content: contents,
 	}
 }
 

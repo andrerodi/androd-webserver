@@ -3,27 +3,57 @@ package templates
 import (
   "strconv"
   "fmt"
+
+	"github.com/gomarkdown/markdown"
+	"github.com/gomarkdown/markdown/html"
+	"github.com/gomarkdown/markdown/parser"
 )
 
 type Project struct {
 	Id      int
 	Title   string
-	Content string
+	Content []byte
 }
 
 templ Projects(current, total int, project Project) {
   <!-- PAGING LEFT -->
-  <a href={ templ.URL(fmt.Sprintf("projects?id=%s", strconv.Itoa(current - 1))) } if current <= 1 { disabled style="cursor: default; pointer-events: none;" }  class="button is-small mr-5">
-    <span>&#60;&#61;</span>
-  </a>
+  <div class="is-justify-content-center	is-align-content-center">
+    <a href={ templ.URL(fmt.Sprintf("projects?id=%s", strconv.Itoa(current - 1))) } if current <= 1 { disabled style="cursor: default; pointer-events: none;" }  class="button is-small mr-5">
+      <span>&#60;&#61;</span>
+    </a>
+  </div>
   
-  <div>
-    <h1>Projects</h1>
-    <p>Project { strconv.Itoa(current) }</p>
+  <div style="width: 100%;">
+    <div class="card card-border" style="min-width: 80%;">
+      <div class="card-content">
+        <p class="title" style="user-select: none; pointer: none;">
+          { project.Title }
+        </p>
+        <p>
+          @templ.Raw(mdToHTML(project.Content))
+        </p>
+      </div>
+    </div>
   </div>
   
   <!-- PAGING RIGHT -->
-  <a href={ templ.URL(fmt.Sprintf("projects?id=%s", strconv.Itoa(current + 1))) } if current >= total { disabled style="cursor: default; pointer-events: none;" } class="button is-small ml-5">
-    <span>&#62;&#61;</span>
-  </a>
+  <div class="is-justify-content-center	is-align-content-center">
+    <a href={ templ.URL(fmt.Sprintf("projects?id=%s", strconv.Itoa(current + 1))) } if current >= total { disabled style="cursor: default; pointer-events: none;" } class="button is-small ml-5">
+      <span>&#62;&#61;</span>
+    </a>
+  </div>
+}
+
+func mdToHTML(md []byte) string {
+	// create markdown parser with extensions
+	extensions := parser.CommonExtensions | parser.AutoHeadingIDs | parser.NoEmptyLineBeforeBlock
+	p := parser.NewWithExtensions(extensions)
+	doc := p.Parse(md)
+
+	// create HTML renderer with extensions
+	htmlFlags := html.CommonFlags | html.HrefTargetBlank
+	opts := html.RendererOptions{Flags: htmlFlags}
+	renderer := html.NewRenderer(opts)
+
+	return string(markdown.Render(doc, renderer))
 }
