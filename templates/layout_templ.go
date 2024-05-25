@@ -23,14 +23,14 @@ func header(title string) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<head><title>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<head><title>~/androd/")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var2 string
 		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(title)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 5, Col: 16}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 5, Col: 25}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
 		if templ_7745c5c3_Err != nil {
@@ -68,7 +68,7 @@ func hero(contents templ.Component, title string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div><!-- Hero content: will be in the middle --><div class=\"hero-body\"><div class=\"container has-text-centered\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div><!-- Hero content: will be in the middle --><div class=\"hero-body\"><div class=\"container is-flex is-justify-content-center\tis-align-content-center has-text-centered\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -145,7 +145,7 @@ func footerNav() templ.Component {
 			templ_7745c5c3_Var6 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"container\"><nav class=\"level\"><!-- LEFT SIDE --><div class=\"level-left\"><div class=\"level-item\"><p>André Rodi | ♡ | 2024</p></div></div><!-- RIGHT SIDE --><div class=\"level-right\"><div class=\"level-item\"><span class=\"icon\"><span class=\"is-size-7\">Source</span></span></div><div></div><div class=\"level-item\"><span class=\"icon\"><a class=\"devicons devicons-github_badge\" href=\"https://github.com/andrerodi/androd-webserver\"></a></span></div></div></nav></div>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"container\"><nav class=\"level\"><!-- LEFT SIDE --><div class=\"level-left\"><div class=\"level-item\"><p class=\"no-input\">André Rodi | ♡ | 2024 |  <a href=\"https://go.dev\"><span class=\"devicons devicons-go\" style=\"font-size: 1.1em; font-weight: bold; color: var(--has-text-link-light)\"></span></a> <a href=\"https://bulma.io\"><svg target=\"Bulma CSS\" height=\"17\" viewBox=\"0 0 640 160\" transform=\"translate(0, 1.4)\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M0 110L10 40L50 0L100 50L70 80L110 120L50 160L0 110Z\" stroke=\"var(--bulma-success-on-scheme)\" stroke-width=\"10px\"></path></svg></a></p></div></div><!-- RIGHT SIDE --><div class=\"level-right\"><div class=\"level-item\"><span class=\"icon\"><span class=\"is-size-7 no-input\">Source</span></span></div><div></div><div class=\"level-item\"><span class=\"icon\"><a class=\"devicons devicons-github_badge\" href=\"https://github.com/andrerodi/androd-webserver\"></a></span></div></div></nav></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

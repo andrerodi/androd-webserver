@@ -2,7 +2,7 @@ package templates
 
 templ header(title string) {
 	<head>
-		<title>{ title }</title>
+		<title>~/androd/{ title }</title>
 		<meta charset="UTF-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css"/>
@@ -21,7 +21,7 @@ templ hero(contents templ.Component, title string) {
 		</div>
 		<!-- Hero content: will be in the middle -->
 		<div class="hero-body">
-			<div class="container has-text-centered">
+			<div class="container is-flex is-justify-content-center	is-align-content-center has-text-centered">
 				@contents
 			</div>
 		</div>
@@ -61,14 +61,21 @@ templ footerNav() {
 			<!-- LEFT SIDE -->
 			<div class="level-left">
 				<div class="level-item">
-					<p>André Rodi | ♡ | 2024</p>
+					<p class="no-input">André Rodi | ♡ | 2024 | 
+            <a href="https://go.dev"><span class="devicons devicons-go" style="font-size: 1.1em; font-weight: bold; color: var(--has-text-link-light)" /></a>
+            <a href="https://bulma.io">
+              <svg target="Bulma CSS" height="17" viewBox="0 0 640 160" transform="translate(0, 1.4)" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M0 110L10 40L50 0L100 50L70 80L110 120L50 160L0 110Z" stroke="var(--bulma-success-on-scheme)" stroke-width="10px"></path>
+              </svg>
+            </a>
+          </p>
 				</div>
 			</div>
 			<!-- RIGHT SIDE -->
 			<div class="level-right">
 				<div class="level-item">
 					<span class="icon">
-						<span class="is-size-7">Source</span>
+						<span class="is-size-7 no-input">Source</span>
 					</span>
 				</div>
         <div />
