@@ -39,18 +39,19 @@ templ headerNav(title string) {
 				<a class="navbar-item" href="/">
 					<span class="title" style="pointer: cursor;">~/androd/{ title }</span>
 				</a>
-				<span class="navbar-burger" data-target="navbarMenuHeroA">
-					<span></span>
-					<span></span>
-					<span></span>
-					<span></span>
-				</span>
+
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbar-header">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
 			</div>
-			<div id="navbarMenuHeroA" class="navbar-menu">
+
+			<div id="navbar-header" class="navbar-menu">
 				<div class="navbar-end">
-					<a class="navbar-item is-active" href="/projects?id=1">.projects</a>
-					<a class="navbar-item is-active" href="/about">.about</a>
-					<a class="navbar-item is-active" href="/tetris">.tetris</a>
+					<a if title == "projects" {class="navbar-item is-active"} else {class="navbar-item"}  href="/projects?id=1">.projects</a>
+					<a if title == "about" {class="navbar-item is-active"} else {class="navbar-item"}  class="navbar-item" href="/about">.about</a>
 				</div>
 			</div>
 		</nav>

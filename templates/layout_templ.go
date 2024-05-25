@@ -121,7 +121,37 @@ func headerNav(title string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</span></a> <span class=\"navbar-burger\" data-target=\"navbarMenuHeroA\"><span></span> <span></span> <span></span> <span></span></span></div><div id=\"navbarMenuHeroA\" class=\"navbar-menu\"><div class=\"navbar-end\"><a class=\"navbar-item is-active\" href=\"/projects?id=1\">.projects</a> <a class=\"navbar-item is-active\" href=\"/about\">.about</a> <a class=\"navbar-item is-active\" href=\"/tetris\">.tetris</a></div></div></nav></div>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</span></a> <a role=\"button\" class=\"navbar-burger\" aria-label=\"menu\" aria-expanded=\"false\" data-target=\"navbar-header\"><span aria-hidden=\"true\"></span> <span aria-hidden=\"true\"></span> <span aria-hidden=\"true\"></span> <span aria-hidden=\"true\"></span></a></div><div id=\"navbar-header\" class=\"navbar-menu\"><div class=\"navbar-end\"><a")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		if title == "projects" {
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(" class=\"navbar-item is-active\"")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+		} else {
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(" class=\"navbar-item\"")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(" href=\"/projects?id=1\">.projects</a> <a")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		if title == "about" {
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(" class=\"navbar-item is-active\"")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+		} else {
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(" class=\"navbar-item\"")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(" class=\"navbar-item\" href=\"/about\">.about</a></div></div></nav></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
