@@ -8,6 +8,7 @@ templ header(title string) {
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css"/>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/devicons/1.8.0/css/devicons.min.css"/>
 		<link rel="stylesheet" href="static/css/androd.css"/>
+    <link href="https://fonts.cdnfonts.com/css/jetbrains-mono" rel="stylesheet">
 		<script src="https://unpkg.com/htmx.org@1.9.12"></script>
 	</head>
 }
@@ -67,7 +68,7 @@ templ footerNav() {
 			<div class="level-right">
 				<div class="level-item">
 					<span class="icon">
-						<p><strong>Project</strong></p>
+						<span class="is-size-7">Source</span>
 					</span>
 				</div>
         <div />
@@ -84,7 +85,7 @@ templ footerNav() {
 templ Layout(contents templ.Component, title string) {
 	<html data-theme="dark">
 		@header(title)
-		<body class="flex flex-col h-full">
+		<body class="flex flex-col h-full" style="font-family: 'JetBrains Mono', sans-serif;">
 			@hero(contents, title)
 		</body>
 	</html>

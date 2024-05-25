@@ -36,7 +36,7 @@ func header(title string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</title><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css\"><link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/devicons/1.8.0/css/devicons.min.css\"><link rel=\"stylesheet\" href=\"static/css/androd.css\"><script src=\"https://unpkg.com/htmx.org@1.9.12\"></script></head>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</title><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css\"><link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/devicons/1.8.0/css/devicons.min.css\"><link rel=\"stylesheet\" href=\"static/css/androd.css\"><link href=\"https://fonts.cdnfonts.com/css/jetbrains-mono\" rel=\"stylesheet\"><script src=\"https://unpkg.com/htmx.org@1.9.12\"></script></head>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -115,7 +115,7 @@ func headerNav(title string) templ.Component {
 		var templ_7745c5c3_Var5 string
 		templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(title)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 39, Col: 66}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 40, Col: 66}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 		if templ_7745c5c3_Err != nil {
@@ -145,7 +145,7 @@ func footerNav() templ.Component {
 			templ_7745c5c3_Var6 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"container\"><nav class=\"level\"><!-- LEFT SIDE --><div class=\"level-left\"><div class=\"level-item\"><p>André Rodi | ♡ | 2024</p></div></div><!-- RIGHT SIDE --><div class=\"level-right\"><div class=\"level-item\"><span class=\"icon\"><p><strong>Project</strong></p></span></div><div></div><div class=\"level-item\"><span class=\"icon\"><a class=\"devicons devicons-github_badge\" href=\"https://github.com/andrerodi/androd-webserver\"></a></span></div></div></nav></div>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"container\"><nav class=\"level\"><!-- LEFT SIDE --><div class=\"level-left\"><div class=\"level-item\"><p>André Rodi | ♡ | 2024</p></div></div><!-- RIGHT SIDE --><div class=\"level-right\"><div class=\"level-item\"><span class=\"icon\"><span class=\"is-size-7\">Source</span></span></div><div></div><div class=\"level-item\"><span class=\"icon\"><a class=\"devicons devicons-github_badge\" href=\"https://github.com/andrerodi/androd-webserver\"></a></span></div></div></nav></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -177,7 +177,7 @@ func Layout(contents templ.Component, title string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<body class=\"flex flex-col h-full\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<body class=\"flex flex-col h-full\" style=\"font-family: &#39;JetBrains Mono&#39;, sans-serif;\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
