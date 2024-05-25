@@ -23,7 +23,7 @@ func Home() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div><h1>Home</h1><p>This is the home page</p></div>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div><h1 style=\"user-select: none;\">Welcome</h1><img style=\"user-select: none;\" src=\"/static/img/dancing-gopher.gif\" alt=\"dancing-gopher-missing :(\" width=\"64px\" height=\"64px\"></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

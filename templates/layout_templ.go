@@ -36,7 +36,7 @@ func header(title string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</title><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css\"><link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/devicons/1.8.0/css/devicons.min.css\"><script src=\"https://unpkg.com/htmx.org@1.9.12\"></script></head>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</title><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css\"><link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/devicons/1.8.0/css/devicons.min.css\"><link rel=\"stylesheet\" href=\"static/css/androd.css\"><script src=\"https://unpkg.com/htmx.org@1.9.12\"></script></head>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -64,7 +64,7 @@ func hero(contents templ.Component, title string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = nav(title).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = headerNav(title).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -76,7 +76,15 @@ func hero(contents templ.Component, title string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div></div><!-- Hero footer: will stick at the bottom --><div class=\"hero-foot\"><nav class=\"tabs\"><div class=\"container\"><div class=\"columns\"><div class=\"column\"><a class=\"devicons devicons-github_small\" href=\"https://github.com/andrerodi/androd-webserver\"></a></div><div class=\"column\"><span class=\"devicons devicons-github_small\" htref=\"https://github.com/andrerodi/androd-webserver\"></span></div><div class=\"column\"><p>Made with love</p></div></div></div></nav></div></section>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div></div><!-- Hero footer: will stick at the bottom --><div class=\"hero-foot is-small\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = footerNav().Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div></section>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -87,7 +95,7 @@ func hero(contents templ.Component, title string) templ.Component {
 	})
 }
 
-func nav(title string) templ.Component {
+func headerNav(title string) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
 		if !templ_7745c5c3_IsBuffer {
@@ -100,20 +108,44 @@ func nav(title string) templ.Component {
 			templ_7745c5c3_Var4 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<nav class=\"navbar\"><div class=\"container\"><div class=\"navbar-brand\"><a class=\"navbar-item\" href=\"/\"><p class=\"title\" style=\"pointer: cursor;\">~/androd/")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"container\"><nav class=\"navbar\"><div class=\"navbar-brand\"><a class=\"navbar-item\" href=\"/\"><span class=\"title\" style=\"pointer: cursor;\">~/androd/")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var5 string
 		templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(title)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 57, Col: 68}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 39, Col: 66}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</p></a> <span class=\"navbar-burger\" data-target=\"navbarMenuHeroA\"><span></span> <span></span> <span></span> <span></span></span></div><div id=\"navbarMenuHeroA\" class=\"navbar-menu\"><div class=\"navbar-end\"><a class=\"navbar-item is-active\">Home </a> <a class=\"navbar-item\">Examples </a> <a class=\"navbar-item\">Documentation </a> <span class=\"navbar-item\"><a class=\"button is-primary is-inverted\"><span class=\"icon\"><i class=\"fab fa-github\"></i></span> <span>Download</span></a></span></div></div></div></nav>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</span></a> <span class=\"navbar-burger\" data-target=\"navbarMenuHeroA\"><span></span> <span></span> <span></span> <span></span></span></div><div id=\"navbarMenuHeroA\" class=\"navbar-menu\"><div class=\"navbar-end\"><a class=\"navbar-item is-active\" href=\"/about\">About </a></div></div></nav></div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		if !templ_7745c5c3_IsBuffer {
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteTo(templ_7745c5c3_W)
+		}
+		return templ_7745c5c3_Err
+	})
+}
+
+func footerNav() templ.Component {
+	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
+		if !templ_7745c5c3_IsBuffer {
+			templ_7745c5c3_Buffer = templ.GetBuffer()
+			defer templ.ReleaseBuffer(templ_7745c5c3_Buffer)
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var6 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var6 == nil {
+			templ_7745c5c3_Var6 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"container\"><nav class=\"level\"><!-- LEFT SIDE --><div class=\"level-left\"><div class=\"level-item\"><p>André Rodi | ♡ | 2024</p></div></div><!-- RIGHT SIDE --><div class=\"level-right\"><div class=\"level-item\"><span class=\"icon\"><p><strong>Project</strong></p></span></div><div></div><div class=\"level-item\"><span class=\"icon\"><a class=\"devicons devicons-github_badge\" href=\"https://github.com/andrerodi/androd-webserver\"></a></span></div></div></nav></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -132,9 +164,9 @@ func Layout(contents templ.Component, title string) templ.Component {
 			defer templ.ReleaseBuffer(templ_7745c5c3_Buffer)
 		}
 		ctx = templ.InitializeContext(ctx)
-		templ_7745c5c3_Var6 := templ.GetChildren(ctx)
-		if templ_7745c5c3_Var6 == nil {
-			templ_7745c5c3_Var6 = templ.NopComponent
+		templ_7745c5c3_Var7 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var7 == nil {
+			templ_7745c5c3_Var7 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<html data-theme=\"dark\">")

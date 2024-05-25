@@ -5,88 +5,87 @@ templ header(title string) {
 		<title>{ title }</title>
 		<meta charset="UTF-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/devicons/1.8.0/css/devicons.min.css" />
-    <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css"/>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/devicons/1.8.0/css/devicons.min.css"/>
+		<link rel="stylesheet" href="static/css/androd.css"/>
+		<script src="https://unpkg.com/htmx.org@1.9.12"></script>
 	</head>
 }
 
 templ hero(contents templ.Component, title string) {
-  <section class="hero is-fullheight-with-navbar">
-
-    <!-- Hero head: will stick at the top -->
-    <div class="hero-head">
-      @nav(title)
-    </div>
-
-    <!-- Hero content: will be in the middle -->
-    <div class="hero-body">
-      <div class="container has-text-centered">
-        @contents
-      </div>
-    </div>
-
-    <!-- Hero footer: will stick at the bottom -->
-    <div class="hero-foot">
-      <nav class="tabs">
-        <div class="container">
-          <div class="columns">
-            <div class="column">
-              <a class="devicons devicons-github_small" href="https://github.com/andrerodi/androd-webserver" />
-            </div>
-            <div class="column">
-              <span class="devicons devicons-github_small" htref="https://github.com/andrerodi/androd-webserver" />
-            </div>
-            <div class="column">
-              <p>Made with love</p>
-            </div>
-          </div>
-          // <img src="/static/img/dancing-gopher.gif" alt="Gopher-Golang" width="46" height="46"/>
-        </div>
-      </nav>
-    </div>
-
-  </section>
+	<section class="hero is-fullheight-with-navbar">
+		<!-- Hero head: will stick at the top -->
+		<div class="hero-head">
+			@headerNav(title)
+		</div>
+		<!-- Hero content: will be in the middle -->
+		<div class="hero-body">
+			<div class="container has-text-centered">
+				@contents
+			</div>
+		</div>
+		<!-- Hero footer: will stick at the bottom -->
+		<div class="hero-foot is-small">
+			@footerNav()
+		</div>
+	</section>
 }
 
-templ nav(title string) {
-  <nav class="navbar">
-    <div class="container">
-      <div class="navbar-brand">
-        <a class="navbar-item" href="/">
-          <span class="title" style="pointer: cursor;">~/androd/{ title }</span>
-        </a>
-        <span class="navbar-burger" data-target="navbarMenuHeroA">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-        </span>
-      </div>
-      <div id="navbarMenuHeroA" class="navbar-menu">
-        <div class="navbar-end">
-          <a class="navbar-item is-active"> Home </a>
-          <a class="navbar-item"> Examples </a>
-          <a class="navbar-item"> Documentation </a>
-          <span class="navbar-item">
-            <a class="button is-primary is-inverted">
-              <span class="icon">
-                <i class="fab fa-github"></i>
-              </span>
-              <span>Download</span>
-            </a>
-          </span>
-        </div>
-      </div>
-    </div>
-  </nav>
+templ headerNav(title string) {
+	<div class="container">
+		<nav class="navbar">
+			<div class="navbar-brand">
+				<a class="navbar-item" href="/">
+					<span class="title" style="pointer: cursor;">~/androd/{ title }</span>
+				</a>
+				<span class="navbar-burger" data-target="navbarMenuHeroA">
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+				</span>
+			</div>
+			<div id="navbarMenuHeroA" class="navbar-menu">
+				<div class="navbar-end">
+					<a class="navbar-item is-active" href="/about">About </a>
+				</div>
+			</div>
+		</nav>
+	</div>
+}
+
+templ footerNav() {
+	<div class="container">
+		<nav class="level">
+			<!-- LEFT SIDE -->
+			<div class="level-left">
+				<div class="level-item">
+					<p>André Rodi | ♡ | 2024</p>
+				</div>
+			</div>
+			<!-- RIGHT SIDE -->
+			<div class="level-right">
+				<div class="level-item">
+					<span class="icon">
+						<p><strong>Project</strong></p>
+					</span>
+				</div>
+        <div />
+				<div class="level-item">
+					<span class="icon">
+						<a class="devicons devicons-github_badge" href="https://github.com/andrerodi/androd-webserver"></a>
+					</span>
+				</div>
+			</div>
+		</nav>
+	</div>
 }
 
 templ Layout(contents templ.Component, title string) {
-  <html data-theme="dark">
-	  @header(title)
-	  <body class="flex flex-col h-full">
-      @hero(contents, title)
-	  </body>
-  </html>
+	<html data-theme="dark">
+		@header(title)
+		<body class="flex flex-col h-full">
+			@hero(contents, title)
+		</body>
+	</html>
 }
