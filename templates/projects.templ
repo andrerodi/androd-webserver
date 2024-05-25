@@ -2,25 +2,28 @@ package templates
 
 import (
   "strconv"
+  "fmt"
 )
 
-templ Projects(id int) {
+type Project struct {
+	Id      int
+	Title   string
+	Content string
+}
+
+templ Projects(current, total int, project Project) {
   <!-- PAGING LEFT -->
-  <a href="projects?id={int}" class="button is-danger is-outlined is-small">
-    <span class="icon is-small">
-        <i class="fa fa-power-off"></i>
-    </span>
+  <a href={ templ.URL(fmt.Sprintf("projects?id=%s", strconv.Itoa(current - 1))) } if current <= 1 { disabled style="cursor: default; pointer-events: none;" }  class="button is-small mr-5">
+    <span>&#60;&#61;</span>
   </a>
   
   <div>
     <h1>Projects</h1>
-    <p>Project { strconv.Itoa(id) }</p>
+    <p>Project { strconv.Itoa(current) }</p>
   </div>
   
   <!-- PAGING RIGHT -->
-  <a href="some/link" class="button is-danger is-outlined is-small">
-    <span class="icon is-small">
-        <i class="fa fa-power-off"></i>
-    </span>
+  <a href={ templ.URL(fmt.Sprintf("projects?id=%s", strconv.Itoa(current + 1))) } if current >= total { disabled style="cursor: default; pointer-events: none;" } class="button is-small ml-5">
+    <span>&#62;&#61;</span>
   </a>
 }
