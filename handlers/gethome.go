@@ -12,8 +12,8 @@ func NewHomeHandler() *HomeHandler {
 }
 
 func (handler *HomeHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	about := templates.About()
-	err := templates.Layout(about, "home").Render(r.Context(), w)
+	templ := templates.Home()
+	err := templates.Layout(templ, "home").Render(r.Context(), w)
 
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
