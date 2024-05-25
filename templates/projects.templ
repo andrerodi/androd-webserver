@@ -1,0 +1,26 @@
+package templates
+
+import (
+  "strconv"
+)
+
+templ Projects(id int) {
+  <!-- PAGING LEFT -->
+  <a href="projects?id={int}" class="button is-danger is-outlined is-small">
+    <span class="icon is-small">
+        <i class="fa fa-power-off"></i>
+    </span>
+  </a>
+  
+  <div>
+    <h1>Projects</h1>
+    <p>Project { strconv.Itoa(id) }</p>
+  </div>
+  
+  <!-- PAGING RIGHT -->
+  <a href="some/link" class="button is-danger is-outlined is-small">
+    <span class="icon is-small">
+        <i class="fa fa-power-off"></i>
+    </span>
+  </a>
+}

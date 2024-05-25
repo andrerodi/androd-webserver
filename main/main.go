@@ -27,6 +27,7 @@ func main() {
 
 	http.HandleFunc("/", handlers.NewHomeHandler().ServeHTTP)
 	http.HandleFunc("/about", handlers.NewAboutHandler().ServeHTTP)
+	http.HandleFunc("/projects", handlers.NewProjectsHandler().ServeHTTP)
 
 	http.ListenAndServe(":3333", nil)
 }
