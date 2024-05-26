@@ -140,6 +140,21 @@ func headerNav(title string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
+		if title == "playground" {
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(" class=\"navbar-item is-active\"")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+		} else {
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(" class=\"navbar-item\"")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(" class=\"navbar-item\" href=\"/playground\">.playground</a> <a")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
 		if title == "about" {
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(" class=\"navbar-item is-active\"")
 			if templ_7745c5c3_Err != nil {
@@ -175,7 +190,7 @@ func footerNav() templ.Component {
 			templ_7745c5c3_Var6 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"container\"><nav class=\"level\"><!-- LEFT SIDE --><div class=\"level-left\"><div class=\"level-item\"><p class=\"no-input\">André Rodi | <a href=\"https://go.dev\"><span class=\"devicons devicons-go\" style=\"font-size: 1.1em; font-weight: bold; color: var(--has-text-link-light)\"></span></a> <a href=\"https://www.debian.org/\"><span class=\"devicons devicons-debian\" style=\"font-size: 1.1em; font-weight: bold; color: var(--bulma-danger-on-scheme)\"></span></a> <a href=\"https://bulma.io\"><svg target=\"Bulma CSS\" height=\"17\" viewBox=\"0 0 160 160\" transform=\"translate(1, 1.4)\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M0 110L10 40L50 0L100 50L70 80L110 120L50 160L0 110Z\" stroke=\"var(--bulma-success-on-scheme)\" stroke-width=\"14px\"></path></svg></a> | 2024</p></div></div><!-- RIGHT SIDE --><div class=\"level-right\"><div class=\"level-item\"><span class=\"icon\"><span class=\"is-size-7 no-input\">Source</span></span></div><div></div><div class=\"level-item\"><span class=\"icon\"><a class=\"devicons devicons-github_badge\" href=\"https://github.com/andrerodi/androd-webserver\"></a></span></div></div></nav></div>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"container\"><nav class=\"level\"><!-- LEFT SIDE --><div class=\"level-left\"><div class=\"level-item\"><p>André Rodi | 2024 | <a href=\"https://go.dev\"><span class=\"devicons devicons-go\" style=\"font-size: 1.1em; font-weight: bold; color: var(--has-text-link-light)\"></span></a> <a href=\"https://www.debian.org/\"><span class=\"devicons devicons-debian\" style=\"font-size: 1.1em; font-weight: bold; color: var(--bulma-danger-on-scheme)\"></span></a> <a href=\"https://bulma.io\"><svg target=\"Bulma CSS\" height=\"17\" viewBox=\"0 0 160 160\" transform=\"translate(1, 1.4)\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M0 110L10 40L50 0L100 50L70 80L110 120L50 160L0 110Z\" stroke=\"var(--bulma-success-on-scheme)\" stroke-width=\"14px\"></path></svg></a></p></div></div><!-- RIGHT SIDE --><div class=\"level-right\"><div class=\"level-item\"><span class=\"icon\"><span class=\"is-size-7\">Source</span></span></div><div></div><div class=\"level-item\"><span class=\"icon\"><a class=\"devicons devicons-github_badge\" href=\"https://github.com/andrerodi/androd-webserver\"></a></span></div></div></nav></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
