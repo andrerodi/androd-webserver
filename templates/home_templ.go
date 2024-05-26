@@ -10,6 +10,10 @@ import "context"
 import "io"
 import "bytes"
 
+import (
+	"time"
+)
+
 func Home() templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
@@ -23,7 +27,7 @@ func Home() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div><img src=\"/static/img/dancing-gopher.gif\" alt=\"dancing-gopher-missing :(\" width=\"64px\" height=\"64px\"><div class=\"card card-border\" style=\"max-width: 430px;\"><div class=\"card-content\"><p class=\"title\">“There are two hard things in computer science: cache invalidation, naming things, and off-by-one errors.”</p><p class=\"subtitle\">Jeff Atwood</p></div></div></div>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div id=\"animate\" class=\"tilt-in-top-1\"><img src=\"/static/img/dancing-gopher.gif\" alt=\"dancing-gopher-missing :(\" width=\"64px\" height=\"64px\"><div class=\"card card-border\" style=\"max-width: 430px;\"><div class=\"card-content\"><p id=\"joke\" class=\"title\">“There are two hard things in computer science: cache invalidation, naming things, and off-by-one errors.”</p><p id=\"joke-author\" class=\"subtitle\">Jeff Atwood</p></div></div></div><script>\r\n    window.onload = function() {\r\n        setTimeout(function() {\r\n            var animationElement = document.getElementById(\"animate\");\r\n            animationElement.classList.remove(\"tilt-in-top-1\");\r\n\r\n            var jokeElement = document.getElementById(\"joke\");\r\n            var jokeAuthorElement = document.getElementById(\"joke-author\");\r\n            jokeElement.textContent = \"“There are three concurrency! hard things in computer science: cache invalidation, naming things, off by one errors, and”\";\r\n            jokeAuthorElement.textContent = \"tinyogre\";\r\n            jokeElement.classList.add(\"flicker-in-1\");\r\n            jokeAuthorElement.classList.add(\"flicker-in-1\");\r\n            animationElement.classList.add(\"scale-up-ver-center\");\r\n        }, 5000); // Change the text after 5 seconds\r\n    };\r\n  </script>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -32,4 +36,16 @@ func Home() templ.Component {
 		}
 		return templ_7745c5c3_Err
 	})
+}
+
+func updateConcurrencyJoke() <-chan string {
+	ch := make(chan string)
+
+	go func() {
+		ch <- "“There are two hard things in computer science: cache invalidation, naming things, and off-by-one errors.”"
+		time.Sleep(5 * time.Second)
+		ch <- "“There are three concurrency! hard things in computer science: cache invalidation, naming things, off by one errors, and”"
+	}()
+
+	return ch
 }

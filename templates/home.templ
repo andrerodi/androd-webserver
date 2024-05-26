@@ -1,16 +1,47 @@
 package templates
 
+import (
+	"time"
+)
+
 templ Home() {
-  <div>
-    <img src="/static/img/dancing-gopher.gif" alt="dancing-gopher-missing :(" width="64px" height="64px" />
-    <div class="card card-border" style="max-width: 430px;">
-      <div class="card-content">
-        <p class="title">
-          “There are two hard things in computer science: cache invalidation, naming
-          things, and off-by-one errors.”
-        </p>
-        <p class="subtitle">Jeff Atwood</p>
-      </div>
-    </div>
-  </div>
+	<div id="animate" class="tilt-in-top-1">
+		<img src="/static/img/dancing-gopher.gif" alt="dancing-gopher-missing :(" width="64px" height="64px"/>
+		<div class="card card-border" style="max-width: 430px;">
+			<div class="card-content">
+				<p id="joke" class="title">
+					“There are two hard things in computer science: cache invalidation, naming things, and off-by-one errors.”
+				</p>
+				<p id="joke-author" class="subtitle">Jeff Atwood</p>
+			</div>
+		</div>
+	</div>
+	<script>
+    window.onload = function() {
+        setTimeout(function() {
+            var animationElement = document.getElementById("animate");
+            animationElement.classList.remove("tilt-in-top-1");
+
+            var jokeElement = document.getElementById("joke");
+            var jokeAuthorElement = document.getElementById("joke-author");
+            jokeElement.textContent = "“There are three concurrency! hard things in computer science: cache invalidation, naming things, off by one errors, and”";
+            jokeAuthorElement.textContent = "tinyogre";
+            jokeElement.classList.add("flicker-in-1");
+            jokeAuthorElement.classList.add("flicker-in-1");
+            animationElement.classList.add("scale-up-ver-center");
+        }, 5000); // Change the text after 5 seconds
+    };
+  </script>
+}
+
+func updateConcurrencyJoke() <-chan string {
+	ch := make(chan string)
+
+	go func() {
+		ch <- "“There are two hard things in computer science: cache invalidation, naming things, and off-by-one errors.”"
+		time.Sleep(5 * time.Second)
+		ch <- "“There are three concurrency! hard things in computer science: cache invalidation, naming things, off by one errors, and”"
+	}()
+
+	return ch
 }

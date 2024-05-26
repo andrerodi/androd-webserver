@@ -23,7 +23,7 @@ func About() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div><h1>What <strong>about</strong> it?</h1></div>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div><img src=\"/static/img/panda.gif\" alt=\"sleeping-panda-missing :(\" width=\"64px\" height=\"64px\"><h1>What <strong>about</strong> it?</h1></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
