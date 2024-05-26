@@ -78,6 +78,39 @@ templ headerNav(title string) {
 			</div>
 		</nav>
 	</div>
+	<script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+    // Get all "navbar-burger" elements
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+    
+    // Add a click event on each of them
+    $navbarBurgers.forEach( el => {
+      el.addEventListener('click', async () => {
+
+        // Get the target from the "data-target" attribute
+        const target = el.dataset.target;
+        const $target = document.getElementById(target);
+
+        // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+        el.classList.toggle('is-active');
+
+        // Check if the "navbar-menu" is active
+        if (el.classList.contains('is-active')) {
+          $target.classList.add("tracking-in-contract")
+          $target.classList.remove("tracking-out-expand")
+        } else {
+          $target.classList.add("tracking-out-expand")
+          $target.classList.remove("tracking-in-contract")
+          await new Promise(resolve => setTimeout(resolve, 700));
+        };
+
+        $target.classList.toggle('is-active');
+
+        });
+      });
+    });
+  </script>
 }
 
 templ footerNav() {
@@ -88,12 +121,15 @@ templ footerNav() {
 				<div class="level-item">
 					<p>
 						André Rodi | 2024 |
-						<a href="https://go.dev"><span class="devicons devicons-go" style="font-size: 1.1em; font-weight: bold; color: var(--has-text-link-light)"></span></a>
 						<a href="https://www.debian.org/"><span class="devicons devicons-debian" style="font-size: 1.1em; font-weight: bold; color: var(--bulma-danger-on-scheme)"></span></a>
+						<a href="https://go.dev"><span class="devicons devicons-go" style="font-size: 1.1em; font-weight: bold; color: var(--has-text-link-light)"></span></a>
 						<a href="https://bulma.io">
 							<svg target="Bulma CSS" height="17" viewBox="0 0 160 160" transform="translate(1, 1.4)" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path fill-rule="evenodd" clip-rule="evenodd" d="M0 110L10 40L50 0L100 50L70 80L110 120L50 160L0 110Z" stroke="var(--bulma-success-on-scheme)" stroke-width="14px"></path>
 							</svg>
+						</a>
+						<a href="https://animista.net/">
+							<img src="/static/img/animista-logo-small.svg" width="13px" style="margin-top: 3px;"/>
 						</a>
 					</p>
 				</div>
