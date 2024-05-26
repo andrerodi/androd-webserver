@@ -108,14 +108,14 @@ func headerNav(title string) templ.Component {
 			templ_7745c5c3_Var4 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"container\"><nav class=\"navbar\"><div class=\"navbar-brand\"><a class=\"navbar-item\" href=\"/\"><span class=\"title\" style=\"pointer: cursor;\">~/androd/")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"container\"><nav class=\"navbar\"><div class=\"navbar-brand\"><a class=\"navbar-item\" href=\"/\"><span class=\"title\" style=\"pointer: cursor;\">~/<span class=\"title is-hidden-mobile\" style=\"pointer: cursor;\">androd/</span>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var5 string
 		templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(title)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 40, Col: 66}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 40, Col: 135}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 		if templ_7745c5c3_Err != nil {
@@ -190,7 +190,7 @@ func footerNav() templ.Component {
 			templ_7745c5c3_Var6 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"container\"><nav class=\"level\"><!-- LEFT SIDE --><div class=\"level-left\"><div class=\"level-item\"><p>André Rodi | 2024 | <a href=\"https://www.debian.org/\"><span class=\"devicons devicons-debian\" style=\"font-size: 1.1em; font-weight: bold; color: var(--bulma-danger-on-scheme)\"></span></a> <a href=\"https://go.dev\"><span class=\"devicons devicons-go\" style=\"font-size: 1.1em; font-weight: bold; color: var(--has-text-link-light)\"></span></a> <a href=\"https://bulma.io\"><svg target=\"Bulma CSS\" height=\"17\" viewBox=\"0 0 160 160\" transform=\"translate(1, 1.4)\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M0 110L10 40L50 0L100 50L70 80L110 120L50 160L0 110Z\" stroke=\"var(--bulma-success-on-scheme)\" stroke-width=\"14px\"></path></svg></a> <a href=\"https://animista.net/\"><img src=\"/static/img/animista-logo-small.svg\" width=\"13px\" style=\"margin-top: 3px;\"></a></p></div></div><!-- RIGHT SIDE --><div class=\"level-right\"><div class=\"level-item\"><span class=\"icon\"><span class=\"is-size-7\">Source</span></span></div><div></div><div class=\"level-item\"><span class=\"icon\"><a class=\"devicons devicons-github_badge\" href=\"https://github.com/andrerodi/androd-webserver\"></a></span></div></div></nav></div>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"container\"><nav class=\"level\"><!-- LEFT SIDE --><div class=\"level-left\"><div class=\"level-item\"><p>André Rodi | 2024 | <a href=\"https://www.debian.org/\"><span class=\"devicons devicons-debian\" style=\"font-size: 1.1em; font-weight: bold; color: var(--bulma-danger-on-scheme)\"></span></a> <a href=\"https://go.dev\"><span class=\"devicons devicons-go\" style=\"font-size: 1.1em; font-weight: bold; color: var(--has-text-link-light)\"></span></a> <a href=\"https://bulma.io\"><svg target=\"Bulma CSS\" height=\"17\" viewBox=\"0 0 160 160\" transform=\"translate(1, 1.4)\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M0 110L10 40L50 0L100 50L70 80L110 120L50 160L0 110Z\" stroke=\"var(--bulma-success-on-scheme)\" stroke-width=\"14px\"></path></svg></a> <a href=\"https://animista.net/\"><img src=\"/static/img/animista-logo-small.svg\" width=\"13px\" style=\"margin-top: 3px;\"></a></p></div></div><!-- RIGHT SIDE --><div class=\"level-right\"><div class=\"level-item is-hidden-mobile\"><span class=\"is-size-7\">Source</span></div><div class=\"level-item\"><span class=\"icon\"><a class=\"devicons devicons-github_badge\" href=\"https://github.com/andrerodi/androd-webserver\"></a></span></div></div></nav></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
