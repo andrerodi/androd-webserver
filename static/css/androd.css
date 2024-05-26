@@ -1,11 +1,7 @@
 :root {
   /* Override navar height for footer, so that it is not as big */
   --bulma-navbar-height: 1rem;
-}
-
-.no-input {
-  user-select: none;
-  cursor: default;
+  caret-color: transparent;
 }
 
 .card-border {

@@ -57,7 +57,7 @@ func Projects(current, total int, project Project) templ.Component {
 				return templ_7745c5c3_Err
 			}
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(" class=\"button is-small mr-5\"><span>&#60;&#61;</span></a></div><div style=\"width: 100%;\"><div class=\"card card-border\" style=\"min-width: 80%;\"><div class=\"card-content\"><p class=\"title\" style=\"user-select: none; pointer: none;\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(" class=\"button is-small mr-5\"><span>&#60;&#61;</span></a></div><div style=\"width: 100%;\"><div class=\"card card-border\" style=\"min-width: 80%;\"><div class=\"card-content\"><p class=\"title\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
