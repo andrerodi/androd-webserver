@@ -1,8 +1,8 @@
 package templates
 
 import (
-  "strconv"
-  "fmt"
+	"strconv"
+	"fmt"
 
 	"github.com/gomarkdown/markdown"
 	"github.com/gomarkdown/markdown/html"
@@ -12,36 +12,52 @@ import (
 type Project struct {
 	Id      int
 	Title   string
+	Date    string
 	Content []byte
 }
 
 templ Projects(current, total int, project Project) {
-  <!-- PAGING LEFT -->
-  <div class="is-justify-content-center	is-align-content-center">
-    <a href={ templ.URL(fmt.Sprintf("projects?id=%s", strconv.Itoa(current - 1))) } if current <= 1 { disabled style="cursor: default; pointer-events: none;" }  class="button is-small mr-5">
-      <span>&#60;&#61;</span>
-    </a>
-  </div>
-  
-  <div style="width: 100%;">
-    <div class="card card-border" style="min-width: 80%;">
-      <div class="card-content">
-        <p class="title">
-          { project.Title }
-        </p>
-        <p>
-          @templ.Raw(mdToHTML(project.Content))
-        </p>
-      </div>
-    </div>
-  </div>
-  
-  <!-- PAGING RIGHT -->
-  <div class="is-justify-content-center	is-align-content-center">
-    <a href={ templ.URL(fmt.Sprintf("projects?id=%s", strconv.Itoa(current + 1))) } if current >= total { disabled style="cursor: default; pointer-events: none;" } class="button is-small ml-5">
-      <span>&#62;&#61;</span>
-    </a>
-  </div>
+	<!-- PAGING LEFT -->
+	<div class="is-justify-content-center	is-align-content-center">
+		<a
+			href={ templ.URL(fmt.Sprintf("projects?id=%s", strconv.Itoa(current-1))) }
+			if current <= 1 {
+				disabled
+				style="cursor: default; pointer-events: none;"
+			}
+			class="button is-small mr-5"
+		>
+			<span>&#60;&#61;</span>
+		</a>
+	</div>
+	<div style="width: 100%;">
+		<div class="card card-border" style="min-width: 80%;">
+			<div class="card-content">
+				<p class="title">
+					{ project.Title }
+				</p>
+				<p class="subtitle">
+					{ project.Date }
+				</p>
+				<p>
+					@templ.Raw(mdToHTML(project.Content))
+				</p>
+			</div>
+		</div>
+	</div>
+	<!-- PAGING RIGHT -->
+	<div class="is-justify-content-center	is-align-content-center">
+		<a
+			href={ templ.URL(fmt.Sprintf("projects?id=%s", strconv.Itoa(current+1))) }
+			if current >= total {
+				disabled
+				style="cursor: default; pointer-events: none;"
+			}
+			class="button is-small ml-5"
+		>
+			<span>&#62;&#61;</span>
+		</a>
+	</div>
 }
 
 func mdToHTML(md []byte) string {
