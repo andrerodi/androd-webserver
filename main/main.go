@@ -2,33 +2,26 @@ package main
 
 import (
 	"androd/handlers"
+
+	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
+
 	"fmt"
-	"log"
-	"net/http"
-	"os"
-	"path/filepath"
 )
 
 func main() {
 	fmt.Println("Starting server at port 3333...")
 
-	// Get the current directory
-	dir, err := os.Getwd()
-	if err != nil {
-		log.Fatal(err)
-	}
+	e := echo.New()
 
-	// Build the path to the static directory
-	staticDir := filepath.Join(dir, "static")
-	log.Println("Serving static files from: ", staticDir)
-	// Serve static images from the filesystem
-	fileServer := http.FileServer(http.Dir(staticDir))
-	http.Handle("/static/*", http.StripPrefix("/static/", fileServer))
+	e.Use(middleware.Logger())
 
-	http.HandleFunc("/", handlers.NewHomeHandler().ServeHTTP)
-	http.HandleFunc("/about", handlers.NewAboutHandler().ServeHTTP)
-	http.HandleFunc("/projects", handlers.NewProjectsHandler().ServeHTTP)
-	http.HandleFunc("/playground", handlers.NewPlaygroundHandler().ServeHTTP)
+	e.Static("/static", "static")
 
-	http.ListenAndServe(":3333", nil)
+	// e.GET("/", handlers.NewEchoHomeHandler().ServeHTTP)
+	// e.GET("/about", handlers.NewEchoAboutHandler().ServeHTTP)
+	// e.GET("/projects", handlers.NewEchoProjectHandler().ServeHTTP)
+
+	handlers.InitHandlers(e)
+	e.Logger.Fatal(e.Start(":3333"))
 }

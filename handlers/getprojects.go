@@ -4,35 +4,11 @@ import (
 	"androd/templates"
 	"encoding/json"
 	"log"
-	"net/http"
 	"os"
 	"path/filepath"
-	"strconv"
+
+	"github.com/labstack/echo/v4"
 )
-
-// GetProjectsHandler handles the /projects route
-type ProjectsHandler struct{}
-
-// NewProjectsHandler creates a new GetProjectsHandler
-func NewProjectsHandler() *ProjectsHandler {
-	return &ProjectsHandler{}
-}
-
-// ServeHTTP serves the /projects route
-func (h *ProjectsHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	id, err := strconv.Atoi(r.URL.Query().Get("id"))
-
-	if err != nil {
-		id = 1
-	}
-
-	id = normalizeId(id)
-
-	log.Println("ID:", id)
-
-	templ := templates.Projects(id, GetProjectsCount(), getProjectById(id))
-	templates.Layout(templ, "projects").Render(r.Context(), w)
-}
 
 func getDirEntries(filetype string) []os.DirEntry {
 	dir, err := os.Getwd()
@@ -123,4 +99,42 @@ func normalizeId(id int) int {
 	}
 
 	return id
+}
+
+// newEchoProjectHandler returns a new instance of the ProjectHandler
+func newEchoProjectHandler() *projectHandler {
+	return &projectHandler{}
+}
+
+// projectHandler handles the project page
+type projectHandler struct{}
+
+type project struct {
+	Id int `query:"id"`
+}
+
+// ServeHTTP serves the project page
+func (h *projectHandler) ServeHTTP(c echo.Context) error {
+	var project project
+	if err := c.Bind(&project); err != nil {
+		project.Id = 1
+	}
+
+	log.Println("Project ID:", project.Id)
+
+	id := project.Id
+	id = normalizeId(id)
+
+	log.Println("ID:", id)
+
+	templ := templates.Projects(id, GetProjectsCount(), getProjectById(id))
+	if err := templates.Layout(templ, "projects").Render(c.Request().Context(), c.Response()); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (h *AggregateHandler) Projects() {
+	h.Echo.GET("/projects", newEchoProjectHandler().ServeHTTP)
 }

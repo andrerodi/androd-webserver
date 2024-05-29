@@ -2,21 +2,48 @@ package handlers
 
 import (
 	"androd/templates"
-	"net/http"
+	"log"
+
+	"github.com/labstack/echo/v4"
 )
 
-// NewPlaygroundHandler returns a new instance of the PlaygroundHandler
-func NewPlaygroundHandler() *PlaygroundHandler {
-	return &PlaygroundHandler{}
+// Echo handler for the playground page.
+
+// newEchoPlaygroundHandler returns a new EchoPlaygroundHandler.
+func newEchoPlaygroundHandler() *echoPlaygroundHandler {
+	return &echoPlaygroundHandler{}
 }
 
-// PlaygroundHandler handles the playground page
-type PlaygroundHandler struct{}
+// echoPlaygroundHandler is a handler for the playground page.
+type echoPlaygroundHandler struct{}
 
-// ServeHTTP serves the playground page
-func (h *PlaygroundHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+// ServeHTTP serves the playground page.
+func (h *echoPlaygroundHandler) ServeHTTP(c echo.Context) error {
 	templ := templates.Playground()
-	templates.Layout(templ, "playground").Render(r.Context(), w)
+	if err := templates.Layout(templ, "playground").Render(c.Request().Context(), c.Response()); err != nil {
+		return err
+	}
+
+	return nil
 }
 
-// Path: templates/playground.templ
+// Handle htmx post request.
+func (h *echoPlaygroundHandler) HandlePost(c echo.Context) error {
+	log.Println("Handling htmx post request...")
+
+	if c, err := c.Response().Writer.Write([]byte("Hello from HTMX!")); err != nil {
+		log.Println("Bytes written to response writer", c)
+		return err
+	}
+
+	return nil
+}
+
+// Handle all routes for the playground page.
+// this *echo.Echo is a pointer to the echo instance.
+// Extend our type by echo.Echo.
+
+func (e *AggregateHandler) Playground() {
+	e.Echo.GET("/playground", newEchoPlaygroundHandler().ServeHTTP)
+	e.Echo.POST("/htmx-post", newEchoPlaygroundHandler().HandlePost)
+}

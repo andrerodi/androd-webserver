@@ -2,20 +2,29 @@ package handlers
 
 import (
 	"androd/templates"
-	"net/http"
+
+	"github.com/labstack/echo/v4"
 )
 
-type HomeHandler struct{}
+// Path: handlers/getabout.go
 
-func NewHomeHandler() *HomeHandler {
-	return &HomeHandler{}
+type echoHomeHandler struct{}
+
+func newEchoHomeHandler() *echoHomeHandler {
+	return &echoHomeHandler{}
 }
 
-func (handler *HomeHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+func (handler *echoHomeHandler) ServeHTTP(c echo.Context) error {
 	templ := templates.Home()
-	err := templates.Layout(templ, "home").Render(r.Context(), w)
+	err := templates.Layout(templ, "home").Render(c.Request().Context(), c.Response())
 
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return err
 	}
+
+	return nil
+}
+
+func (h *AggregateHandler) Home() {
+	h.Echo.GET("/", newEchoHomeHandler().ServeHTTP)
 }

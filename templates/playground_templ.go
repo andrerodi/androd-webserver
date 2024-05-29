@@ -23,7 +23,7 @@ func Playground() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div><h1>Playground</h1><p>Here you can play with the code and see the results in real time.</p><div class=\"row\"><div class=\"col-md-6\"><h2>Code</h2><textarea id=\"code\" class=\"form-control\" rows=\"10\"></textarea></div><div class=\"col-md-6\"><h2>Result</h2><div id=\"result\"></div></div></div></div>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div><button class=\"button\" type=\"button\" hx-post=\"/htmx-post\" hx-target=\"#changeme\">htmx</button><div><p id=\"changeme\">HELLO HTMX</p></div></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

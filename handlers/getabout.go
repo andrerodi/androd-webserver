@@ -2,19 +2,29 @@ package handlers
 
 import (
 	"androd/templates"
-	"net/http"
+
+	"github.com/labstack/echo/v4"
 )
 
 // NewAboutHandler returns a new instance of the AboutHandler
-func NewAboutHandler() *AboutHandler {
-	return &AboutHandler{}
+func newEchoAboutHandler() *aboutHandler {
+	return &aboutHandler{}
 }
 
-// AboutHandler handles the about page
-type AboutHandler struct{}
+// aboutHandler handles the about page
+type aboutHandler struct{}
 
 // ServeHTTP serves the about page
-func (h *AboutHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+func (h *aboutHandler) ServeHTTP(c echo.Context) error {
 	templ := templates.About()
-	templates.Layout(templ, "about").Render(r.Context(), w)
+	err := templates.Layout(templ, "about").Render(c.Request().Context(), c.Response())
+
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (h *AggregateHandler) About() {
+	h.Echo.GET("/about", newEchoAboutHandler().ServeHTTP)
 }

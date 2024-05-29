@@ -123,6 +123,11 @@ func Projects(current, total int, project Project) templ.Component {
 }
 
 func mdToHTML(md []byte) string {
+	buffer := mdToHtmlBuffer(md)
+	return string(buffer)
+}
+
+func mdToHtmlBuffer(md []byte) []byte {
 	// create markdown parser with extensions
 	extensions := parser.CommonExtensions | parser.AutoHeadingIDs | parser.NoEmptyLineBeforeBlock
 	p := parser.NewWithExtensions(extensions)
@@ -133,5 +138,5 @@ func mdToHTML(md []byte) string {
 	opts := html.RendererOptions{Flags: htmlFlags}
 	renderer := html.NewRenderer(opts)
 
-	return string(markdown.Render(doc, renderer))
+	return markdown.Render(doc, renderer)
 }
