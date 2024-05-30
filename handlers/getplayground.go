@@ -2,7 +2,6 @@ package handlers
 
 import (
 	"androd/templates"
-	"log"
 
 	"github.com/labstack/echo/v4"
 )
@@ -20,19 +19,8 @@ type echoPlaygroundHandler struct{}
 // ServeHTTP serves the playground page.
 func (h *echoPlaygroundHandler) ServeHTTP(c echo.Context) error {
 	templ := templates.Playground()
-	if err := templates.Layout(templ, "playground").Render(c.Request().Context(), c.Response()); err != nil {
-		return err
-	}
 
-	return nil
-}
-
-// Handle htmx post request.
-func (h *echoPlaygroundHandler) HandlePost(c echo.Context) error {
-	log.Println("Handling htmx post request...")
-
-	if c, err := c.Response().Writer.Write([]byte("Hello from HTMX!")); err != nil {
-		log.Println("Bytes written to response writer", c)
+	if err := templ.Render(c.Request().Context(), c.Response()); err != nil {
 		return err
 	}
 
@@ -45,5 +33,4 @@ func (h *echoPlaygroundHandler) HandlePost(c echo.Context) error {
 
 func (e *AggregateHandler) Playground() {
 	e.Echo.GET("/playground", newEchoPlaygroundHandler().ServeHTTP)
-	e.Echo.POST("/htmx-post", newEchoPlaygroundHandler().HandlePost)
 }

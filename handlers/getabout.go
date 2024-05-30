@@ -17,11 +17,10 @@ type aboutHandler struct{}
 // ServeHTTP serves the about page
 func (h *aboutHandler) ServeHTTP(c echo.Context) error {
 	templ := templates.About()
-	err := templates.Layout(templ, "about").Render(c.Request().Context(), c.Response())
-
-	if err != nil {
+	if err := templ.Render(c.Request().Context(), c.Response()); err != nil {
 		return err
 	}
+
 	return nil
 }
 

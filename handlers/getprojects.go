@@ -30,7 +30,6 @@ func getDirEntries(filetype string) []os.DirEntry {
 	for i := 0; i < len(files); i++ {
 		if filepath.Ext(files[i].Name()) == filetype {
 			mdFiles = append(mdFiles, files[i])
-			log.Println("Project:", files[i].Name())
 		}
 	}
 
@@ -53,10 +52,8 @@ func getProjectById(id int) templates.Project {
 
 	files := getDirEntries(".md")
 	metas := getDirEntries(".json")
-	log.Println("JSON Files:", metas)
 	file := files[id-1]
 	meta := metas[id-1]
-	log.Println("JSON File:", meta)
 
 	// Parse meta to metaJson struct
 	metaFile, err := os.ReadFile(filepath.Join("static", "projects", meta.Name()))
@@ -71,8 +68,6 @@ func getProjectById(id int) templates.Project {
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	log.Println("Project ID:", id, "Name:", file.Name())
 
 	projectsDir := filepath.Join("static", "projects")
 	contents, err := os.ReadFile(filepath.Join(projectsDir, file.Name()))
@@ -120,15 +115,13 @@ func (h *projectHandler) ServeHTTP(c echo.Context) error {
 		project.Id = 1
 	}
 
-	log.Println("Project ID:", project.Id)
+	log.Println("Received project ID from query:", project.Id)
 
 	id := project.Id
 	id = normalizeId(id)
 
-	log.Println("ID:", id)
-
 	templ := templates.Projects(id, GetProjectsCount(), getProjectById(id))
-	if err := templates.Layout(templ, "projects").Render(c.Request().Context(), c.Response()); err != nil {
+	if err := templ.Render(c.Request().Context(), c.Response()); err != nil {
 		return err
 	}
 

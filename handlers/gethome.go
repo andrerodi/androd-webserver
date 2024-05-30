@@ -16,9 +16,8 @@ func newEchoHomeHandler() *echoHomeHandler {
 
 func (handler *echoHomeHandler) ServeHTTP(c echo.Context) error {
 	templ := templates.Home()
-	err := templates.Layout(templ, "home").Render(c.Request().Context(), c.Response())
 
-	if err != nil {
+	if err := templates.Layout(templ).Render(c.Request().Context(), c.Response()); err != nil {
 		return err
 	}
 

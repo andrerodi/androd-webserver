@@ -19,8 +19,9 @@ type Project struct {
 templ Projects(current, total int, project Project) {
 	<!-- PAGING LEFT -->
 	<div class="is-justify-content-center	is-align-content-center">
-		<a
-			href={ templ.URL(fmt.Sprintf("projects?id=%s", strconv.Itoa(current-1))) }
+		<button
+			hx-get={ string(templ.URL(fmt.Sprintf("projects?id=%s", strconv.Itoa(current-1)))) }
+			hx-target="#contents"
 			if current <= 1 {
 				disabled
 				style="cursor: default; pointer-events: none;"
@@ -28,7 +29,7 @@ templ Projects(current, total int, project Project) {
 			class="button is-small mr-5"
 		>
 			<span>&#60;&#61;</span>
-		</a>
+		</button>
 	</div>
 	<div style="width: 100%;">
 		<div class="card card-border" style="min-width: 80%;">
@@ -47,8 +48,9 @@ templ Projects(current, total int, project Project) {
 	</div>
 	<!-- PAGING RIGHT -->
 	<div class="is-justify-content-center	is-align-content-center">
-		<a
-			href={ templ.URL(fmt.Sprintf("projects?id=%s", strconv.Itoa(current+1))) }
+		<button
+			hx-get={ string(templ.URL(fmt.Sprintf("projects?id=%s", strconv.Itoa(current+1)))) }
+			hx-target="#contents"
 			if current >= total {
 				disabled
 				style="cursor: default; pointer-events: none;"
@@ -56,7 +58,7 @@ templ Projects(current, total int, project Project) {
 			class="button is-small ml-5"
 		>
 			<span>&#62;&#61;</span>
-		</a>
+		</button>
 	</div>
 }
 

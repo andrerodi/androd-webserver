@@ -17,20 +17,7 @@ templ Home() {
 		</div>
 	</div>
 	<script>
-    window.onload = function() {
-        setTimeout(function() {
-            var animationElement = document.getElementById("animate");
-            animationElement.classList.remove("tilt-in-top-1");
-
-            var jokeElement = document.getElementById("joke");
-            var jokeAuthorElement = document.getElementById("joke-author");
-            jokeElement.textContent = "“There are three concurrency! hard things in computer science: cache invalidation, naming things, off by one errors, and”";
-            jokeAuthorElement.textContent = "tinyogre";
-            jokeElement.classList.add("flicker-in-1");
-            jokeAuthorElement.classList.add("flicker-in-1");
-            animationElement.classList.add("scale-up-ver-center");
-        }, 5000); // Change the text after 5 seconds
-    };
+    window.onload = jokeFunc();
   </script>
 }
 
