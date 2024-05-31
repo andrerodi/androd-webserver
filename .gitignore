@@ -23,3 +23,5 @@ tmp/build-errors.log
 
 # templ go files
 *.templ.go
+
+disclaimer.md
