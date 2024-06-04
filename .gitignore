@@ -23,3 +23,14 @@ tmp/build-errors.log
 
 # templ go files
 *.templ.go
+templates/projects_templ.go
+templates/projects_templ.go
+templates/projects_templ.go
+templates/playground_templ.go
+templates/layout_templ.go
+templates/layout.templ
+templates/htmx-test_templ.go
+templates/home_templ.go
+templates/about_templ.go
+tmp
+templates/about_templ.go
