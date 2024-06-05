@@ -12,6 +12,13 @@
   box-shadow: none;
 }
 
+.htmx-blue {
+  color: #3d72d7;
+}
+
+.htmx-white {
+  color: #fff;
+}
 
 /* ANIMATION */
 

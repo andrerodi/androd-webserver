@@ -1,10 +1,10 @@
-# For HAHN Automation @ Continental AG Villingen Schwenningen
+# For HAHN Automation @ Continental AG Babenhausen
 
-Commissioning of automation processes w/ TIA Portal for KITAS4 tachograph
+Commissioning of automation processes w/ TIA Portal
 
 Commissioning of customer MES according to specification
 
-Writing and commissioning of the VDO OT-to-IT interface testing software implementation
+Writing and commissioning of the VDA OT-to-IT interface testing software implementation
 
 Writing and implementing a C# tool to retrieve temperature data and relay it to a PLC via a TCP socket
 
