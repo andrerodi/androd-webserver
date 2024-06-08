@@ -25,3 +25,4 @@ tmp/build-errors.log
 *.templ.go
 
 disclaimer.md
+/tmp/*
