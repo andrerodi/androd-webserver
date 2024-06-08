@@ -1,15 +1,21 @@
-# For HAHN Automation @ Continental AG Villingen Schwenningen
+# Commissioning @ Continental AG Villingen Schwenningen
 
-Commissioning of automation processes w/ TIA Portal for KITAS4 tachograph
+## TIA Portal | C\#
 
-Commissioning of customer MES according to specification
+--- Commissioning of automation processes w/ TIA Portal for KITAS4 tachograph
 
-Writing and commissioning of the VDO OT-to-IT interface testing software implementation
+--- Commissioning of customer MES according to specification
 
-Writing and implementing a C# tool to retrieve temperature data and relay it to a PLC via a TCP socket
+--- Writing and commissioning of the VDO OT-to-IT interface testing software implementation
 
-Writing and commissioning (on-premise) of an UR-Robot communication function block
+--- Writing and implementing a C# tool to retrieve temperature data
+and relay it to a PLC via a TCP socket
 
-Complete rewrite of multiple buggy function blocks (on-premise) { there where a metric s#!t ton of those }
+--- Writing and commissioning (on-premise) of an UR-Robot
+communication function block
 
-Implementing a basic version of my bachelor thesis for a paletting system to help workers making better informed decisions when to change over a palette
+--- Complete rewrite of multiple buggy function blocks (on-premise)
+{ there where a metric s#!t ton of those }
+
+--- Implementing a basic version of my bachelor thesis for a paletting system
+to help workers making better informed decisions when to change over a palette
