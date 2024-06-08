@@ -4,6 +4,17 @@
   caret-color: transparent;
 }
 
+/* hide scrollbar but allow scrolling */
+body {
+  -ms-overflow-style: none; /* for Internet Explorer, Edge */
+  scrollbar-width: auto; /* for Firefox */
+  overflow-y: scroll; 
+}
+
+body::-webkit-scrollbar {
+  display: none; /* for Chrome, Safari, and Opera */
+}
+
 .card-border {
   border-color: var(--bulma-border);
   border-radius: var(--bulma-radius-large);
