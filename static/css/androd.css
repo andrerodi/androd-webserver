@@ -15,6 +15,16 @@ body::-webkit-scrollbar {
   display: none; /* for Chrome, Safari, and Opera */
 }
 
+h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
 .card-border {
   border-color: var(--bulma-border);
   border-radius: var(--bulma-radius-large);
