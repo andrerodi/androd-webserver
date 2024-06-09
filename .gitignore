@@ -21,8 +21,8 @@
 go.work
 tmp/build-errors.log
 
-# templ go files
-*.templ.go
+# generated templ go files
+*_templ.go
 
 disclaimer.md
 /tmp/*
