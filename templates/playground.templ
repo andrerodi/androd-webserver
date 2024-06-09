@@ -1,12 +1,36 @@
 package templates
 
 templ Playground() {
-	<div>
-		<button class="button" type="button" hx-post="/htmx-post" hx-target="#changeme">htmx</button>
-		<div>
-			<p id="changeme">
-				HELLO HTMX
-			</p>
-		</div>
-	</div>
+  <canvas id="my-canvas"></canvas>
+
+<script type="module">
+import PicoCADViewer from "./static/js/pico-cad-viewer.esm.js";
+
+const myCanvas = document.getElementById("my-canvas");
+let oneShot = false;
+
+const viewer = new PicoCADViewer({
+	canvas: myCanvas,
+});
+
+viewer.setResolution(256, 256, 3);
+viewer.backgroundColor = [0, 0, 0, 0];
+
+// Load models from file, string or URL.
+viewer.load("./static/files/kanedas-bike.txt");
+
+// Draw the model manually or start a draw loop.
+if (oneShot) {
+	viewer.draw();
+} else {
+	let spin = 0;
+
+	viewer.startDrawLoop((dt) => {
+		// This callback is called before every frame is drawn.
+		spin += dt;
+		viewer.setTurntableCamera(10, spin, 0.45, { x: 0, y: 0, z: 0});
+		viewer.setLightDirectionFromCamera();
+	});
+}
+</script>
 }
