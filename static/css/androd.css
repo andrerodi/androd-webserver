@@ -8,7 +8,7 @@
 body {
   -ms-overflow-style: none; /* for Internet Explorer, Edge */
   scrollbar-width: auto; /* for Firefox */
-  overflow-y: scroll; 
+  overflow-y: scroll;
 }
 
 body::-webkit-scrollbar {
@@ -44,8 +44,9 @@ h2 {
 /* ANIMATION */
 
 .tilt-in-top-1 {
-  -webkit-animation: tilt-in-top-1 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-  animation: tilt-in-top-1 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  -webkit-animation: tilt-in-top-1 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    both;
+  animation: tilt-in-top-1 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
 /* ----------------------------------------------
@@ -87,7 +88,6 @@ h2 {
     opacity: 1;
   }
 }
-
 
 .flicker-in-1 {
   -webkit-animation: flicker-in-1 2s linear both;
@@ -358,10 +358,10 @@ h2 {
   }
 }
 
-
 .scale-up-ver-center {
-  -webkit-animation: scale-up-ver-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-  animation: scale-up-ver-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+  -webkit-animation: scale-up-ver-center 0.4s
+    cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  animation: scale-up-ver-center 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
 }
 
 /* ----------------------------------------------
@@ -400,10 +400,10 @@ h2 {
   }
 }
 
-
 .tracking-in-contract {
-  -webkit-animation: tracking-in-contract 0.8s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
-  animation: tracking-in-contract 0.8s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+  -webkit-animation: tracking-in-contract 0.8s
+    cubic-bezier(0.215, 0.61, 0.355, 1) both;
+  animation: tracking-in-contract 0.8s cubic-bezier(0.215, 0.61, 0.355, 1) both;
 }
 
 /* ----------------------------------------------
@@ -450,10 +450,10 @@ h2 {
   }
 }
 
-
 .tracking-out-expand {
-  -webkit-animation: tracking-out-expand 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-  animation: tracking-out-expand 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  -webkit-animation: tracking-out-expand 0.8s
+    cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: tracking-out-expand 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
 /* ----------------------------------------------
@@ -498,10 +498,10 @@ h2 {
   }
 }
 
-
 .slide-in-blurred-top {
-  -webkit-animation: slide-in-blurred-top 0.6s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
-  animation: slide-in-blurred-top 0.6s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
+  -webkit-animation: slide-in-blurred-top 0.6s cubic-bezier(0.23, 1, 0.32, 1)
+    both;
+  animation: slide-in-blurred-top 0.6s cubic-bezier(0.23, 1, 0.32, 1) both;
 }
 
 /* ----------------------------------------------

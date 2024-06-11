@@ -1,36 +1,77 @@
 package templates
 
+var spc = []byte{}
+
 templ Playground() {
-  <canvas id="my-canvas"></canvas>
-
 <script type="module">
-import PicoCADViewer from "./static/js/pico-cad-viewer.esm.js";
+  import PicoCADViewer from "./static/js/pico-cad-viewer.esm.js";
 
-const myCanvas = document.getElementById("my-canvas");
-let oneShot = false;
+  const myCanvas = document.getElementById("my-canvas");
 
-const viewer = new PicoCADViewer({
-	canvas: myCanvas,
-});
+  const viewer = new PicoCADViewer({
+    canvas: myCanvas,
+  });
 
-viewer.setResolution(256, 256, 3);
-viewer.backgroundColor = [0, 0, 0, 0];
+  viewer.setResolution(256, 256, 3);
+  viewer.backgroundColor = [0, 0, 0, 0];
 
-// Load models from file, string or URL.
-viewer.load("./static/files/kanedas-bike.txt");
+  // Load models from file, string or URL.
+  viewer.load("./static/files/kanedas-bike.txt");
 
-// Draw the model manually or start a draw loop.
-if (oneShot) {
-	viewer.draw();
-} else {
-	let spin = 0;
+  let byteBuffer = await fetch("/static/files/kanedas-bike.spc")
+    .then((response) => response.arrayBuffer())
+    .then((arrayBuffer) => {
+      return arrayBuffer;
+    });
 
-	viewer.startDrawLoop((dt) => {
-		// This callback is called before every frame is drawn.
-		spin += dt;
-		viewer.setTurntableCamera(10, spin, 0.45, { x: 0, y: 0, z: 0});
-		viewer.setLightDirectionFromCamera();
-	});
-}
+  console.log(byteBuffer);
+  SMWCentral.SPCPlayer.loadSPC(byteBuffer)
+
+  // Draw the model manually or start a draw loop.
+  let spin = 0;
+
+  viewer.startDrawLoop((dt) => {
+    // This callback is called before every frame is drawn.
+    spin += dt;
+    viewer.setTurntableCamera(10, spin, 0.45, {x: 0, y: 0, z: 0});
+    viewer.setLightDirectionFromCamera();
+  });
+
+  const btn = document.getElementById("next-pico-btn").addEventListener("click", next);
+
+  async function next() {
+    const model = getNextModel();
+    viewer.load(model);
+    const spc = model.replace(".txt", ".spc");
+    await fetch(spc)
+      .then((response) => response.arrayBuffer())
+      .then((arrayBuffer) => {
+        byteBuffer = arrayBuffer;
+        SMWCentral.SPCPlayer.loadSPC(byteBuffer);
+      });
+  }
+
+  let index = 0;
+
+  function getNextModel() {
+    const models = [
+      "./static/files/kanedas-bike.txt",
+      "./static/files/hoth.txt",
+    ];
+
+    index = (index + 1) % models.length;
+    return models[index];
+  }
+
 </script>
+<div>
+  <button id="next-pico-btn"><strong class={ lambda() }>λ</strong></button>
+  <br />
+  <canvas id="my-canvas"></canvas>
+</div>
+}
+
+css lambda() {
+color: orange;
+font-size: 2em;
 }

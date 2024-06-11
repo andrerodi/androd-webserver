@@ -17,6 +17,9 @@ type Project struct {
 }
 
 templ Projects(current, total int, project Project) {
+  <script>
+    window.SMWCentral.SPCPlayer.Backend.stopSPC()
+  </script>
 	<!-- PAGING LEFT -->
 	<div class="is-justify-content-center	is-align-content-center">
 		<button
@@ -26,8 +29,7 @@ templ Projects(current, total int, project Project) {
 				disabled
 				style="cursor: default; pointer-events: none;"
 			}
-			class="button is-small mr-5"
-		>
+			class="button is-small mr-5">
 			<span>&#60;&#61;</span>
 		</button>
 	</div>
@@ -37,7 +39,7 @@ templ Projects(current, total int, project Project) {
 				<p class="title">
 					{ project.Title }
 				</p>
-				<p class="subtitle">
+		<p class="subtitle">
 					{ project.Date }
 				</p>
 				<p>
@@ -71,7 +73,7 @@ func mdToHtmlBuffer(md []byte) []byte {
 	// create markdown parser with extensions
 	extensions := parser.CommonExtensions | 
     parser.AutoHeadingIDs | 
-    parser.NoEmptyLineBeforeBlock  
+    parser.NoEmptyLineBeforeBlock 
 
 	p := parser.NewWithExtensions(extensions)
 	doc := p.Parse(md)
@@ -82,4 +84,8 @@ func mdToHtmlBuffer(md []byte) []byte {
 	renderer := html.NewRenderer(opts)
 
 	return markdown.Render(doc, renderer)
+}
+
+script stopSpcPlayer() {
+  SMWCentral.SPCPlayer.stopSPC()
 }

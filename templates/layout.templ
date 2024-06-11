@@ -3,82 +3,163 @@ package templates
 var title string = "home"
 
 templ header() {
-	<head>
-		<title>~/androd/{ title }</title>
-		<meta charset="UTF-8"/>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css"/>
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/devicons/1.8.0/css/devicons.min.css"/>
-		<link rel="stylesheet" href="static/css/androd.css"/>
-		<link rel="stylesheet" href="https://fonts.cdnfonts.com/css/jetbrains-mono"/>
-		<script type="text/javascript" src="static/js/joke.js"></script>
-		<script defer type="text/javascript" src="https://unpkg.com/htmx.org@1.9.12"></script>
-		//<script async type="text/javascript" src="static/js/pico-cad-viewer.min.js"></script>
-		<link rel="icon" type="image/x-icon" href="/static/img/dancing-gopher.gif"/>
-	</head>
+
+<head>
+  <title>~/androd/{ title }</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/devicons/1.8.0/css/devicons.min.css" />
+  <link rel="stylesheet" href="static/css/androd.css" />
+  <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/jetbrains-mono" />
+  <link rel="stylesheet" href="https://unpkg.com/@smwcentral/spc-player@1.2.0/dist/spc_player.css" />
+  <link rel="icon" type="image/x-icon" href="/static/img/dancing-gopher.gif" />
+  <script type="text/javascript" src="static/js/joke.js"></script>
+  <script defer type="text/javascript" src="https://unpkg.com/htmx.org@1.9.12"></script>
+  <script async src="https://unpkg.com/@smwcentral/spc-player@1.2.0/dist/spc.js"></script>
+</head>
+}
+
+templ playa() {
+<input type="checkbox" id="spc-player-toggle" />
+<input type="checkbox" id="spc-player-loop" checked />
+<input type="checkbox" id="spc-player-move" />
+<div id="spc-player-interface" class="spc-player">
+  <div class="header">
+    <div class="group-left">
+      <label for="spc-player-toggle" class="toggle" title="Toggle player">
+        <svg width="24" height="24" viewBox="0 0 24 24">
+          <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"></path>
+        </svg>
+      </label>
+      <a class="pause" title="Pause song">
+        <svg width="24" height="24" viewBox="0 0 24 24">
+          <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"></path>
+        </svg>
+      </a>
+      <a class="play hidden" title="Resume song">
+        <svg width="24" height="24" viewBox="0 0 24 24">
+          <path d="M8 5v14l11-7z"></path>
+        </svg>
+      </a>
+    </div>
+    <div class="group-right">
+      <label for="spc-player-loop" class="loop" title="Toggle looping">
+        <svg class="check" width="16" height="16" viewBox="0 0 24 24">
+          <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path>
+        </svg>
+        <svg width="24" height="24" viewBox="0 0 24 24">
+          <path
+            d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z">
+          </path>
+        </svg>
+      </label>
+      <a class="restart" title="Restart song">
+        <svg width="24" height="24" viewBox="0 0 24 24">
+          <path
+            d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z">
+          </path>
+        </svg>
+      </a>
+      <a class="stop" title="Stop song">
+        <svg width="24" height="24" viewBox="0 0 24 24">
+          <path d="M6 6h12v12H6z"></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+  <h2>Song Title</h2>
+  <h3 style="display: none;"></h3>
+  <aside style="display: none;"></aside>
+  <div class="seek" style="display: none;"><span></span></div>
+  <ul style="display: none;"></ul>
+  <div class="volume">
+    <svg width="24" height="24" viewBox="0 0 24 24">
+      <path
+        d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z">
+      </path>
+    </svg>
+    <span>100%</span>
+    <div class="volume-control">
+      <div class="slider" title="Volume">
+        <div class="fill"></div>
+      </div>
+    </div>
+  </div>
+  <label for="spc-player-move" class="move" title="Move player">
+    <svg width="24" height="24" viewBox="0 0 24 24">
+      <path d="M14 7l-5 5 5 5V7z"></path>
+    </svg>
+  </label>
+</div>
 }
 
 templ hero(contents templ.Component) {
-	<section class="hero is-fullheight-with-navbar">
-		<!-- Hero head: will stick at the top -->
-		<div class="hero-head">
-			@headerNav()
-		</div>
-		<!-- Hero content: will be in the middle -->
-		<div class="hero-body">
-			<div id="contents" class="container is-flex is-justify-content-center	is-align-content-center has-text-centered">
-				@contents
-			</div>
-		</div>
-		<!-- Hero footer: will stick at the bottom -->
-		<div class="hero-foot is-small">
-			@footerNav()
-		</div>
-	</section>
+<section class="hero is-fullheight-with-navbar">
+  <!-- Hero head: will stick at the top -->
+  <div class="hero-head">
+    @headerNav()
+  </div>
+  <!-- Hero content: will be in the middle -->
+  <div class="hero-body">
+    <div id="contents" class="container is-flex is-justify-content-center	is-align-content-center has-text-centered">
+      @contents
+    </div>
+  </div>
+  <!-- Hero footer: will stick at the bottom -->
+  <div class="hero-foot is-small">
+    @footerNav()
+  </div>
+</section>
 }
 
 script setTitle(newTitle string) {
-  const breadcrumb = document.getElementById("title-breadcrumb")
-  // .innerText = newTitle
-  breadcrumb.innerText = newTitle
-  breadcrumb.classList.add("slide-in-blurred-top")
-  // wait for 600ms without using async/await
-  setTimeout(() => {
-    breadcrumb.classList.remove("slide-in-blurred-top")
-  }, 600)
+const breadcrumb = document.getElementById("title-breadcrumb")
+// .innerText = newTitle
+breadcrumb.innerText = newTitle
+breadcrumb.classList.add("slide-in-blurred-top")
+// wait for 600ms without using async/await
+setTimeout(() => {
+breadcrumb.classList.remove("slide-in-blurred-top")
+}, 600)
 }
 
 templ headerNav() {
-	<div class="container">
-		<nav class="navbar">
-			<div class="navbar-brand">
-				<a class="navbar-item" href="/" onclick={ setTitle("home") }>
-					<span class="title" style="pointer: cursor;">~/<span class="title is-hidden-mobile" style="pointer: cursor;">androd/</span><span id="title-breadcrumb">{ title }</span></span>
-				</a>
-				<a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbar-header">
-					<span aria-hidden="true"></span>
-					<span aria-hidden="true"></span>
-					<span aria-hidden="true"></span>
-					<span aria-hidden="true"></span>
-				</a>
-			</div>
-			<div id="navbar-header" class="navbar-menu">
-				<div class="navbar-end">
-					<a class="navbar-item" hx-get="/projects?id=1" hx-target="#contents" hx-swap="innerHTML" onclick={ setTitle("projects") }><span>.cv</span></a>
-					<a class="navbar-item" hx-get="/playground" hx-target="#contents" hx-swap="innerHTML" onclick={ setTitle("playground") }><span>.playground</span></a>
-					<a class="navbar-item" hx-get="/about" hx-target="#contents" hx-swap="innerHTML" onclick={ setTitle("about") }><span>.about</span></a>
-				</div>
-			</div>
-		</nav>
-	</div>
-	<script>
-    document.addEventListener('DOMContentLoaded', () => {
+<div class="container">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="/" onclick={ setTitle("home") }>
+        <span class="title" style="pointer: cursor;">
+          ~/<span class="title is-hidden-mobile" style="pointer: cursor;">androd/<span id="title-breadcrumb">{ title }</span></span>
+        </span>
+      </a>
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbar-header">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    <div id="navbar-header" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" hx-get="/projects?id=1" hx-target="#contents" hx-swap="innerHTML" onclick={
+          setTitle("projects") }><span>.cv</span></a>
+        <a class="navbar-item" hx-get="/playground" hx-target="#contents" hx-swap="innerHTML" onclick={
+          setTitle("playground") }><span>.playground</span></a>
+        <a class="navbar-item" hx-get="/about" hx-target="#contents" hx-swap="innerHTML" onclick={ setTitle("about")
+          }><span>.about</span></a>
+      </div>
+    </div>
+  </nav>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
 
     // Get all "navbar-burger" elements
     const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
-    
+
     // Add a click event on each of them
-    $navbarBurgers.forEach( el => {
+    $navbarBurgers.forEach(el => {
       el.addEventListener('click', async () => {
 
         // Get the target from the "data-target" attribute
@@ -100,59 +181,72 @@ templ headerNav() {
 
         $target.classList.toggle('is-active');
 
-        });
       });
     });
-  </script>
+  });
+</script>
 }
 
 templ footerNav() {
-	<div class="container">
-		<nav class="level">
-			<!-- LEFT SIDE -->
-			<div class="level-left">
-				<div class="level-item">
-					<p>
-						André Rodi | 2024 |
-						<a href="https://www.debian.org/"><span class="devicons devicons-debian" style="font-size: 1.1em; font-weight: bold; color: var(--bulma-danger-on-scheme)"></span></a>
-						<a href="https://go.dev"><span class="devicons devicons-go" style="font-size: 1.1em; font-weight: bold; color: var(--has-text-link-light)"></span></a>
-						<a href="https://htmx.org" class="inherit">
-							<span class="htmx-white">htm<span class="htmx-blue">x</span></span>
-						</a>
-						<a href="https://bulma.io">
-							<svg target="Bulma CSS" height="17" viewBox="0 0 160 160" transform="translate(1, 1.4)" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path fill-rule="evenodd" clip-rule="evenodd" d="M0 110L10 40L50 0L100 50L70 80L110 120L50 160L0 110Z" stroke="var(--bulma-success-on-scheme)" stroke-width="14px"></path>
-							</svg>
-						</a>
-						<a href="https://animista.net/">
-							<img src="/static/img/animista-logo-small.svg" width="13px" style="margin-top: 3px;"/>
-						</a>
-						<a href="https://itch.io">
-							<img src="https://static.itch.io/images/itchio-textless-white.svg" width="16px" style="margin-top: 3px;"/>
-						</a>
-					</p>
-				</div>
-			</div>
-			<!-- RIGHT SIDE -->
-			<div class="level-right">
-				<div class="level-item is-hidden-mobile">
-					<span class="is-size-7">Source</span>
-				</div>
-				<div class="level-item">
-					<span class="icon">
-						<a class="devicons devicons-github_badge" href="https://github.com/andrerodi/androd-webserver"></a>
-					</span>
-				</div>
-			</div>
-		</nav>
-	</div>
+<div class="container">
+  <nav class="level">
+    <!-- LEFT SIDE -->
+    <div class="level-left">
+      <div class="level-item">
+        <p>
+          André Rodi | 2024 |
+          <a href="https://www.debian.org/">
+            <span class="devicons devicons-debian"
+              style="font-size: 1.1em; font-weight: bold; color: var(--bulma-danger-on-scheme)"></span>
+          </a>
+          <a href="https://go.dev">
+            <span class="devicons devicons-go"
+              style="font-size: 1.1em; font-weight: bold; color: var(--has-text-link-light)"></span>
+          </a>
+          <a href="https://htmx.org" class="inherit">
+            <span class="htmx-white">htm<span class="htmx-blue">x</span></span>
+          </a>
+          <a href="https://bulma.io">
+            <svg target="Bulma CSS" height="17" viewBox="0 0 160 160" transform="translate(1, 1.4)" fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M0 110L10 40L50 0L100 50L70 80L110 120L50 160L0 110Z"
+                stroke="var(--bulma-success-on-scheme)" stroke-width="14px"></path>
+            </svg>
+          </a>
+          <a href="https://animista.net/">
+            <img src="/static/img/animista-logo-small.svg" width="13px" style="margin-top: 3px;" />
+          </a>
+          <a href="https://itch.io">
+            <img src="https://static.itch.io/images/itchio-textless-white.svg" width="16px" style="margin-top: 3px;" />
+          </a>
+        </p>
+      </div>
+    </div>
+    <!-- RIGHT SIDE -->
+    <div class="level-right">
+      <div class="level-item is-hidden-mobile">
+        <span class="is-size-7">Source</span>
+      </div>
+      <div class="level-item">
+        <span class="icon">
+          <a class="devicons devicons-github_badge" href="https://github.com/andrerodi/androd-webserver"></a>
+        </span>
+      </div>
+    </div>
+  </nav>
+</div>
 }
 
 templ Layout(contents templ.Component) {
-	<html data-theme="dark">
-		@header()
-		<body class="flex flex-col h-full" style="font-family: 'JetBrains Mono', sans-serif;">
-			@hero(contents)
-		</body>
-	</html>
+<html data-theme="dark">
+@header()
+
+<body class="flex flex-col h-full" style="font-family: 'JetBrains Mono', sans-serif;">
+  @hero(contents)
+  <div style="display: none;">
+    @playa()
+  </div>
+</body>
+
+</html>
 }
