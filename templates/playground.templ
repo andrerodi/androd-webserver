@@ -3,7 +3,7 @@ package templates
 var spc = []byte{}
 
 templ Playground() {
-<script type="module">
+	<script type="module">
   import PicoCADViewer from "./static/js/pico-cad-viewer.esm.js";
 
   const myCanvas = document.getElementById("my-canvas");
@@ -12,7 +12,11 @@ templ Playground() {
     canvas: myCanvas,
   });
 
-  viewer.setResolution(256, 256, 3);
+  if (mobileCheck()) {
+    viewer.setResolution(164, 164, 2);
+  } else {
+    viewer.setResolution(256, 256, 3);
+  }
   viewer.backgroundColor = [0, 0, 0, 0];
 
   // Load models from file, string or URL.
@@ -24,24 +28,69 @@ templ Playground() {
       return arrayBuffer;
     });
 
-  console.log(byteBuffer);
   SMWCentral.SPCPlayer.loadSPC(byteBuffer)
 
   // Draw the model manually or start a draw loop.
   let spin = 0;
+  let depth = 10;
+  let height = 0.45;
 
   viewer.startDrawLoop((dt) => {
     // This callback is called before every frame is drawn.
     spin += dt;
-    viewer.setTurntableCamera(10, spin, 0.45, {x: 0, y: 0, z: 0});
+    viewer.setTurntableCamera(depth, spin, height, {x: 0, y: 0, z: 0});
     viewer.setLightDirectionFromCamera();
   });
 
   const btn = document.getElementById("next-pico-btn").addEventListener("click", next);
+  let intervalId;
 
-  async function next() {
-    const model = getNextModel();
+  async function next(direction) {
+    let model;
+     
+    if (intervalId !== undefined) {
+      clearInterval(intervalId);
+      intervalId = undefined;
+    }
+
+    if (direction == "previous") {
+      model = getPreviousModel();
+    } else {
+      model = getNextModel();
+    }
+
+    if (model.includes("Doom")) {
+      depth = 30;
+      height = -0.1;
+    }
+    else if (model.includes("yoshi")) {
+      depth = 20;
+      height = 0.1;
+      
+      intervalId = setInterval(() => {
+        if(viewer.model.name == "yoshi_2") {
+          model = "./static/files/yoshi_1.txt";
+        } else {
+          model = "./static/files/yoshi.txt";
+        }
+        viewer.load(model);
+      }, 1000 / 10);
+    }
+    else if (model.includes("hoth")) {
+      depth = 10;
+      height = 0.45;
+    }
+    else if (model.includes("kanedas-bike")) {
+      depth = 10;
+      height = 0.45;
+    }
+    else {
+      depth = 10;
+      height = 0.45;
+    }
+
     viewer.load(model);
+
     const spc = model.replace(".txt", ".spc");
     await fetch(spc)
       .then((response) => response.arrayBuffer())
@@ -53,25 +102,58 @@ templ Playground() {
 
   let index = 0;
 
-  function getNextModel() {
-    const models = [
+  const models = [
       "./static/files/kanedas-bike.txt",
       "./static/files/hoth.txt",
+      "./static/files/Doom.txt",
+      "./static/files/yoshi.txt",
     ];
 
+  function getNextModel() {
     index = (index + 1) % models.length;
     return models[index];
   }
 
+  function getPreviousModel() {
+    if (index - 1 < 0) {
+      index = models.length - 1;
+    } else {
+      index = (index - 1) % models.length;
+    }
+    return models[index];
+  }
+
+  if (mobileCheck()) {
+    var canvasElement = document.getElementById('my-canvas');
+
+    // create a simple instance
+    // by default, it only adds horizontal recognizers
+    var mc = new Hammer(canvasElement);
+    
+    // listen to events...
+    let pan = "unknown"
+    mc.on("panleft panright panend", function(ev) {
+      if (ev.type != "panend") {
+        pan = ev.type;
+      } else {
+        if (pan == "panleft") {
+          next("next");
+        } else if (pan == "panright") {
+          next("previous");
+        }
+      }
+    });
+  }
+
 </script>
-<div>
-  <button id="next-pico-btn"><strong class={ lambda() }>λ</strong></button>
-  <br />
-  <canvas id="my-canvas"></canvas>
-</div>
+	<div>
+		<button class="is-hidden-mobile is-hidden-tablet" id="next-pico-btn"><strong class={ lambda() }>λ</strong></button>
+		<br/>
+		<canvas id="my-canvas"></canvas>
+	</div>
 }
 
 css lambda() {
-color: orange;
-font-size: 2em;
+	color: orange;
+	font-size: 2em;
 }
