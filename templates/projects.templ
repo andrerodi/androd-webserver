@@ -16,13 +16,48 @@ type Project struct {
 	Content []byte
 }
 
+script swiper() {
+  if (mobileCheck()) {
+    var cardElement = document.getElementById('card');
+
+    // create a simple instance
+    // by default, it only adds horizontal recognizers
+    var mc = new Hammer(cardElement);
+    
+    // listen to events...
+    let pan = "unknown"
+    mc.on("panleft panright panend", function(ev) {
+      if (ev.type != "panend") {
+        pan = ev.type;
+      } else {
+        if (pan == "panleft") {
+          next("next")
+        } else if (pan == "panright") {
+          next("previous")
+        }
+      }
+    });
+  }
+
+  function next(direction) {
+    if (direction == "next") {
+      document.getElementById("next-button").click()
+    } else {
+      document.getElementById("previous-button").click()
+    }
+  }
+}
+
+
 templ Projects(current, total int, project Project) {
   <script>
     window.SMWCentral.SPCPlayer.Backend.stopSPC()
   </script>
+  @swiper()
+
 	<!-- PAGING LEFT -->
 	<div class="is-justify-content-center	is-align-content-center">
-		<button
+		<button id="previous-button" class="is-hidden-mobile"
 			hx-get={ string(templ.URL(fmt.Sprintf("projects?id=%s", strconv.Itoa(current-1)))) }
 			hx-target="#contents"
 			if current <= 1 {
@@ -34,7 +69,7 @@ templ Projects(current, total int, project Project) {
 		</button>
 	</div>
 	<div style="width: 100%;">
-		<div class="card card-border" style="min-width: 80%;">
+		<div id="card" class="card card-border" style="min-width: 80%;">
 			<div class="card-content">
 				<p class="title">
 					{ project.Title }
@@ -50,7 +85,7 @@ templ Projects(current, total int, project Project) {
 	</div>
 	<!-- PAGING RIGHT -->
 	<div class="is-justify-content-center	is-align-content-center">
-		<button
+		<button id="next-button" class="is-hidden-mobile"
 			hx-get={ string(templ.URL(fmt.Sprintf("projects?id=%s", strconv.Itoa(current+1)))) }
 			hx-target="#contents"
 			if current >= total {
@@ -86,6 +121,3 @@ func mdToHtmlBuffer(md []byte) []byte {
 	return markdown.Render(doc, renderer)
 }
 
-script stopSpcPlayer() {
-  SMWCentral.SPCPlayer.stopSPC()
-}
